@@ -1,0 +1,8 @@
+.vs/
+.vscode/
+
+HelloTriangle/.vs/*
+HelloTriangle/.vs/HelloTriangle/v17/*
+
+HelloTriangle/Debug/*
+HelloTriangle/HelloTriangle/Debug/*
