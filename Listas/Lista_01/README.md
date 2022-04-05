@@ -37,12 +37,15 @@ EBO (element buffer objects) - buffer que, também armazena dados dos vértices,
 **5 - Faça o desenho de 2 triângulos na tela. Desenhe eles:**
 
 a. Apenas com o polígono preenchido
+
 ![](https://i.imgur.com/fArcvZk.png)
 
 b. Apenas com contorno
+
 ![](https://i.imgur.com/cYNI7EO.png)
 
 c. Apenas como pontos
+
 ![](https://i.imgur.com/4ZIx2Q5.png)
 
 d. Com as 3 formas de desenho juntas
