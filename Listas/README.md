@@ -17,6 +17,8 @@ Agora:
 
 - Navegue até "Linker" e então "Input"
 - No primeiro item, "Additional Dependencies", inclua o seguinte: glfw3.lib
+- Agora, vá até "Linker" e "General"
+- No item, "Additional Library Directories" adicione: $(SolutionDir)Dependencies\GLFW\lib-vc2022
 - Pronto!
 
 
