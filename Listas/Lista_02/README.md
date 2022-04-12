@@ -1,5 +1,5 @@
-## Lista de Exercícios 1 – Processamento Gráfico
-### Introdução à OpenGL Moderna – Shaders & Buffers
+## Lista de Exercícios 2 – Processamento Gráfico
+### Introdução à OpenGL Moderna – Sistemas de Coordenadas e Câmera 2D
 
 ---
 **1 - Modifique a janela do mundo (window/ortho) para os limites: xmin=-10, xmax=10,
