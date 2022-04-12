@@ -49,3 +49,28 @@ c. Apenas como pontos
 ![](https://i.imgur.com/4ZIx2Q5.png)
 
 d. Com as 3 formas de desenho juntas
+
+---
+**6 - Faça o desenho de um círculo na tela, utilizando a equação paramétrica do círculo para
+gerar os vértices. Depois disso:**
+
+a. Um octágono
+
+![](https://i.imgur.com/9UqSF0a.png)
+
+b. Um pentágono
+
+![](https://i.imgur.com/0l9ru3D.png)
+
+c. Um pac-man
+
+![](https://i.imgur.com/ucY2M34.png)
+
+d. Uma fatia de pizza
+
+![](https://i.imgur.com/VuQVwny.png)
+
+---
+**7 - Desenhe uma espiral:**
+
+![](https://i.imgur.com/87RXHzU.png)
