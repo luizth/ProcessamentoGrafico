@@ -7,6 +7,7 @@ using namespace std;
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <Shader.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -22,24 +23,8 @@ int generateCircle(float radius, int nPoints);
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 
+// Variable const
 const float Pi = 3.1419;
-
-const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"\n"
-"uniform mat4 projection;\n"
-"\n"
-"void main()\n"
-"{\n"
-"   gl_Position = projection * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"}\0";
-
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{"
-"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\0";
 
 
 // The MAIN function, from here we start the application and run the game loop
@@ -77,60 +62,21 @@ int main()
     int success;
     char infolog[512];
 
-    // vertex shader
-    int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
-    // check for shader compile errors
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(vertexShader, 512, NULL, infolog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infolog << std::endl;
-    }
-
-
-    // fragment shader
-    int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
-    // check for shader compile errors
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infolog);
-        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infolog << std::endl;
-    }
-
-
-    // link shaders
-    int shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-    // check for linking errors
-    glGetShaderiv(shaderProgram, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(shaderProgram, 512, NULL, infolog);
-        std::cout << "ERROR::SHADER::PROGRAM::COMPILATION_FAILED\n" << infolog << std::endl;
-    }
-
-    // dispose shaders
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-
+	Shader shader("./shaders/hello.vs", "./shaders/hello.fs");
 
     int nPoints = 20;
 	GLuint VAO = setupGeometry(); // generateCircle(0.5, nPoints);  // setupGeometry();
 
-	GLint colorLoc = glGetUniformLocation(shaderProgram, "inputColor");
-	//assert(colorLoc > -1);
+	GLint colorLoc = glGetUniformLocation(shader.ID, "inputColor");
+	// assert(colorLoc > -1);
 
-	glUseProgram(shaderProgram);
+	glUseProgram(shader.ID);
 
 	//Criando a matriz de projeção usando a GLM
 	glm::mat4 projection = glm::mat4(1); //matriz identidade
 	projection = glm::ortho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
 
-	GLint projLoc = glGetUniformLocation(shaderProgram, "projection");
+	GLint projLoc = glGetUniformLocation(shader.ID, "projection");
 	glUniformMatrix4fv(projLoc, 1, false, glm::value_ptr(projection));
 
 
@@ -156,7 +102,7 @@ int main()
 
 		// Chamada de desenho - drawcall
 		// Poligono Preenchido - GL_TRIANGLES
-		glUniform4f(colorLoc, 1.0f, 1.0f, 0.0f, 1.0f); //enviando cor para variável uniform inputColor
+		glUniform4f(colorLoc, 1.0f, 0.2f, 0.0f, 1.0f); //enviando cor para variável uniform inputColor
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, nPoints + 2);
 
