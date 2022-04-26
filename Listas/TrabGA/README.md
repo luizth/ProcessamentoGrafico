@@ -10,4 +10,4 @@ Dependências:
 ---
 Game:
 
-[!]https://i.imgur.com/G5wMMjP.png
+![](https://i.imgur.com/G5wMMjP.png)
